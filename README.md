@@ -115,12 +115,6 @@ Open `ai.js` to add your intelligence keys:
      const HUGGINGFACE_MODEL = "google/flan-t5-small"; // or your preferred text generation model
      ```
 
-* **Claude Sonnet API (Direct Key Option):**
-  1. Create a key in your Anthropic Console.
-  2. Add it to `ai.js`:
-     ```javascript
-     const CLAUDE_API_KEY = "sk-ant-your-key-here";
-     ```
 
 * *Note: If no keys are specified, MessMate AI operates in high-intelligence **Offline Simulator Mode**, dynamically creating plans, cheap lists, comparisons, and restaurant recommendations completely locally!*
 
@@ -166,7 +160,5 @@ Contributions make the open-source community amazing!
 
 ---
 
-## 📄 License
-Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 *Crafted with ❤️ by the MessMate AI Dev Team.*
