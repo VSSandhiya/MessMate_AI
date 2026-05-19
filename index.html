@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MessMate AI Premium</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+  <!-- Google Fonts: Outfit for sleek headers, Inter for readable UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Adorable Floating Live Deal (Desktop Only) -->
+  <div id="floating-deal" class="floating-offer" style="cursor: pointer;">
+    <div class="offer-icon">🔥</div>
+    <div>
+      <strong id="float-deal-title">Live Discount Active!</strong>
+      <div id="float-deal-text" style="font-size: 11px; color: var(--text-muted)">Loading dynamic offer...</div>
+    </div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="glass-header">
+      <div class="logo-box">
+        <i class="ti ti-tools-kitchen-2"></i>
+      </div>
+      <div class="header-titles">
+        <h1>MessMate AI</h1>
+        <p>Live Location &bull; Diet Plans &bull; Smart Orders</p>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="ti ti-moon" id="theme-icon"></i>
+      </button>
+    </header>
+
+    <!-- Deals Banner -->
+    <div id="deals-banner" class="deals-banner glass-card" style="display: none;" onclick="switchTab('find', document.querySelector('.tab:nth-child(1)'))">
+      <div class="deal-icon-glow"><i class="ti ti-flame"></i></div>
+      <span id="deal-text">Live Deal Loading...</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-pills">
+      <div class="sidebar-brand">
+        <div class="logo-box"><i class="ti ti-tools-kitchen-2"></i></div>
+        <div class="header-titles">
+          <h1 style="font-size: 20px;">MessMate AI</h1>
+        </div>
+      </div>
+      <button class="tab active" onclick="switchTab('ai', this)">
+        <i class="ti ti-brain"></i> Agent
+      </button>
+      <button class="tab" onclick="switchTab('find', this)">
+        <i class="ti ti-compass"></i> Discover
+      </button>
+      <button class="tab" onclick="switchTab('wa', this)">
+        <i class="ti ti-brand-whatsapp"></i> Orders
+      </button>
+      <button class="tab" onclick="switchTab('profile', this)">
+        <i class="ti ti-user-scan"></i> Profile
+      </button>
+    </nav>
+
+    <!-- Tab: AI AGENT (MAIN ROLE) -->
+    <div id="tab-ai" class="panel active">
+      <div class="glass-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column; height: 600px;">
+        <div class="ai-header" style="background: rgba(139, 92, 246, 0.1);">
+          <div class="ai-title">
+            <div class="ai-avatar"><i class="ti ti-brain"></i></div>
+            <div>
+              <h4>MessMate Intelligence</h4>
+              <span>Online &bull; Real-time connected</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-box" id="chat-box" style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px;"></div>
+
+        <div class="ai-prompts" id="quick-chips" style="padding: 12px 20px;">
+          <button onclick="sendQuick('Suggest a high-protein diet for today')">💪 High Protein</button>
+          <button onclick="sendQuick('What should I eat for lunch right now?')">🍲 Live Meals</button>
+          <button onclick="sendQuick('Which mess is least crowded now?')">🚶 Quiet Spot</button>
+          <button onclick="sendQuick('Compare the best veg spots')">⚖️ Compare</button>
+        </div>
+
+        <div class="chat-input-area" style="padding: 16px 20px; background: rgba(0,0,0,0.2);">
+          <button class="btn-mic" id="btn-mic" onclick="startVoiceRecognition()">
+            <i class="ti ti-microphone"></i>
+          </button>
+          <input id="chat-input" class="glass-input" type="text" placeholder="Ask about diet, meals, or messes..." onkeydown="if(event.key==='Enter') sendChat()" style="flex: 1;" />
+          <button class="btn-send" onclick="sendChat()">
+            <i class="ti ti-send"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: FIND MESS -->
+    <div id="tab-find" class="panel">
+      <!-- Location Input -->
+      <div class="search-bar glass-card" style="display:flex; gap:8px;">
+        <i class="ti ti-map-pin search-icon"></i>
+        <input id="loc-input" type="text" placeholder="Enter your college or area..." value="Anna Nagar, Chennai" onkeydown="handleLocationSearch(event)" style="flex:1;" />
+        <button class="btn-primary" onclick="triggerLocationSearch()">
+          <i class="ti ti-search"></i> Search
+        </button>
+        <button class="btn-secondary" onclick="useMyLocation()" style="padding: 12px; border-radius: 12px; border: 1px solid var(--glass-border); cursor: pointer; display: flex; align-items: center; justify-content: center; background: var(--glass-bg); color: var(--text-main);">
+          <i class="ti ti-current-location" style="font-size:18px;"></i>
+        </button>
+      </div>
+
+      <!-- Quick Location Selection Row -->
+      <div class="quick-locations" style="display: flex; gap: 8px; margin: 12px 0 20px; flex-wrap: wrap; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-muted); font-weight: 500;">Quick Areas:</span>
+        <button class="chip" onclick="quickSelectLocation('Anna Nagar')" style="padding: 6px 12px; font-size: 12px; border-radius: 8px;">Anna Nagar</button>
+        <button class="chip" onclick="quickSelectLocation('Guindy')" style="padding: 6px 12px; font-size: 12px; border-radius: 8px;">Guindy</button>
+        <button class="chip" onclick="quickSelectLocation('Tambaram')" style="padding: 6px 12px; font-size: 12px; border-radius: 8px;">Tambaram</button>
+        <button class="chip" onclick="quickSelectLocation('Adyar')" style="padding: 6px 12px; font-size: 12px; border-radius: 8px;">Adyar</button>
+      </div>
+
+      <div class="map-box glass-card" id="map-box">
+        <i class="ti ti-map-2"></i>
+        <span class="loc-label" id="loc-label">Anna Nagar, Chennai</span>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <button class="chip active" onclick="applyFilter('all', this)">All</button>
+        <button class="chip" onclick="applyFilter('veg', this)">Pure Veg</button>
+        <button class="chip" onclick="applyFilter('cheap', this)">Under ₹80</button>
+        <button class="chip" onclick="applyFilter('open', this)">Open Now</button>
+        <button class="chip" onclick="applyFilter('quiet', this)">Peaceful</button>
+      </div>
+
+      <!-- Mess List -->
+      <div id="mess-list" class="grid-list"></div>
+    </div>
+
+    <!-- Tab: WHATSAPP -->
+    <div id="tab-wa" class="panel">
+      <div class="glass-card wa-container">
+        <div class="wa-header">
+          <div class="wa-circle"><i class="ti ti-brand-whatsapp"></i></div>
+          <div>
+            <h3>Smart Ordering</h3>
+            <p>One-click requests sent to owners.</p>
+          </div>
+        </div>
+
+        <select id="mess-select" class="glass-input mt-4">
+          <option value="919840011234">Saravana Mess</option>
+          <option value="919840155678">Sri Murugan Bhavan</option>
+          <option value="919876543210">Vasantha Bhavan</option>
+          <option value="919000012345">Anna Mess</option>
+        </select>
+
+        <textarea id="wa-msg" class="glass-input mt-4" rows="4" oninput="syncPreview()">Hi! I'd like to know today's lunch menu and availability. Is there space for 1 person around 1 PM? My budget is ₹80. Please confirm!</textarea>
+
+        <div class="wa-actions mt-4">
+          <button class="btn-success" onclick="openWhatsApp()"><i class="ti ti-send"></i> Send via WhatsApp</button>
+          <button class="btn-secondary" onclick="copyMessage()"><i class="ti ti-copy"></i> Copy</button>
+        </div>
+        <div class="toast" id="copy-toast">Copied to clipboard!</div>
+        
+        <h4 class="mt-4">Live Preview</h4>
+        <div class="wa-preview">
+          <div id="preview-text">Hi! I'd like to know today's lunch menu and availability. Is there space for 1 person around 1 PM? My budget is ₹80. Please confirm!</div>
+        </div>
+
+        <h4 class="mt-4">Quick Templates</h4>
+        <div class="quick-templates">
+          <button class="template-btn glow" onclick="quickOrderWA()"><i class="ti ti-bolt"></i> Smart Order (Auto-send)</button>
+          <button class="template-btn" onclick="quickWA('menu')"><i class="ti ti-calendar"></i> Ask Menu</button>
+          <button class="template-btn" onclick="quickWA('crowd')"><i class="ti ti-users"></i> Ask Crowd Status</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: PROFILE -->
+    <div id="tab-profile" class="panel">
+      <div class="glass-card">
+        <h3>AI Diet Profile</h3>
+        <p class="sub-text">Tune your preferences so the AI can craft perfect meals.</p>
+        
+        <div class="form-group mt-4">
+          <label>Dietary Requirement</label>
+          <select id="pref-diet" class="glass-input">
+            <option value="all">Anything</option>
+            <option value="veg">Pure Vegetarian</option>
+            <option value="both">Vegetarian & Non-Veg</option>
+          </select>
+        </div>
+
+        <div class="form-group mt-4">
+          <label>Max Budget (₹)</label>
+          <input id="pref-budget" type="number" class="glass-input" placeholder="e.g. 100" />
+        </div>
+
+        <div class="form-group mt-4">
+          <label>Crowd Tolerance</label>
+          <select id="pref-crowd" class="glass-input">
+            <option value="all">Don't Mind Waiting</option>
+            <option value="quiet">I hate waiting (Quiet Only)</option>
+          </select>
+        </div>
+        
+        <button class="btn-primary mt-4 w-100" onclick="saveProfile()">
+          <i class="ti ti-device-floppy"></i> Save Profile & Sync
+        </button>
+        <div class="toast" id="profile-toast">Profile Saved! AI updated.</div>
+      </div>
+    </div>
+
+  </div> <!-- End App Container -->
+
+  <!-- Supabase CDN and Client initialization -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+
+  <script src="data.js"></script>
+  <script src="whatsapp.js"></script>
+  <script src="ai.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
