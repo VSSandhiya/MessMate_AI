@@ -1,4 +1,4 @@
-# 🍲 MessMate AI Premium
+# MessMate AI Premium
 
 [![Supabase Backend Connected](https://img.shields.io/badge/Database-Supabase-green?style=for-the-badge&logo=supabase)](https://supabase.com)
 [![AI Engine Powered](https://img.shields.io/badge/AI--Engine-Claude%20%2F%20HuggingFace%20%2F%20Local-blueviolet?style=for-the-badge&logo=anthropic)](https://huggingface.co)
@@ -8,44 +8,44 @@
 
 **MessMate AI Premium** is a real-time, full-stack, AI-powered food discovery, diet recommendation, and smart ordering platform designed specifically for students and local diners.
 
-🌐 **Live Demo Link:** [messmate-ai.vercel.app](https://messmate-ai.vercel.app)
+ **Live Demo Link:** [messmate-ai.vercel.app](https://messmate-ai.vercel.app)
 
 Tired of walking to a canteen only to find it crowded, expensive, or sold out of your favorite food? MessMate AI bridges the gap between hungry students and local kitchen owners. It combines location-aware GPS tracking, real-time database state sync, custom dietary planning, and instant WhatsApp integration into a premium, hyper-responsive interface.
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
-### 🧠 1. MessMate Intelligence (AI Agent Tab)
+###  1. MessMate Intelligence (AI Agent Tab)
 * **Conversational AI Partner:** Ask about diet plans, budget constraints, or crowd updates. Supported by Claude API, Hugging Face endpoints, and a robust **Offline AI fallback simulator**.
 * **Real-time Context Feeding:** The AI reads live availability data from surrounding canteens and details from your Diet Profile to answer queries with pinpoint accuracy.
 * **Smart Side-by-Side Comparison Engine:** Generates interactive comparison grids right inside your chat box.
-* **🎙️ Voice Search:** Supports speech-to-text queries using the browser's built-in **Web Speech API** (`en-IN` localized).
+* ** Voice Search:** Supports speech-to-text queries using the browser's built-in **Web Speech API** (`en-IN` localized).
 
-### 📍 2. Live GPS & OpenStreetMap Discover Tab
+###  2. Live GPS & OpenStreetMap Discover Tab
 * **Interactive Geolocation:** Locate yourself instantly with a single tap or search any neighborhood (powered by **Nominatim Geocoding**).
 * **Live Restaurant Extraction:** Query actual eating outlets within a 2km radius using the **Overpass API** directly from OpenStreetMap servers.
 * **Real-time Status Tracking:** Quick indicators display rating stars, distances, budget levels, open/closed times, and crowd densities.
 * **Visual Menus & Reviews:** Expand cards to inspect item quantities, live availability statuses (Available, Running low, Sold out), and post community reviews with star ratings.
 
-### 💬 3. Smart WhatsApp Ordering Tab
+###  3. Smart WhatsApp Ordering Tab
 * **Official WhatsApp Connection:** Order meals or check status via pre-drafted templates routed directly to the mess owners via `wa.me`.
 * **Automated Templates:** Quick options for asking about today's menu, reserving a seat, querying crowd status, or asking about home delivery.
 * **One-Click Dispatch:** Automatic text creation with active preview panel, manual copy options, and fast-track click triggers.
 
-### 👤 4. Custom AI Diet Profile
+###  4. Custom AI Diet Profile
 * **Dietary Tuning:** Toggle between *Pure Vegetarian*, *Veg + Non-Veg*, or *Anything*.
 * **Budget Limits:** Save your maximum price per meal to restrict recommendation lists.
 * **Waiting Tolerances:** Indicate if you are crowd-averse so the platform hides busy environments.
 * **Automatic Filter Syncing:** Synchronizes instantly, altering the AI agent’s system guidelines and the Discover Tab results.
 
-### 🔥 5. Interactive Flash Deals & Simulator
+###  5. Interactive Flash Deals & Simulator
 * **15% Off Flash Deals:** The system automatically picks an open kitchen daily to offer an exclusive discount, complete with a bouncing high-attention banner and one-click focus animation.
 * **Dynamic Environment Fluctuations:** Realistic internal simulator updates crowd densities and dish availability statuses dynamically (every 30 seconds) to replicate busy peak hours.
 
 ---
 
-## 🛠️ Architecture & Data Flow
+##  Architecture & Data Flow
 
 ```mermaid
 graph TD
@@ -65,15 +65,15 @@ graph TD
 
 ---
 
-## 📂 Codebase Breakdown
+##  Codebase Breakdown
 
-* 📂 **`index.html`**: Structure of the premium multi-tab dashboard. Incorporates floating offer components, modern structural sections, forms, and CDN scripts.
-* 📂 **`style.css`**: Complete design system with customizable CSS properties (`--primary`, `--glass-bg`, etc.). Incorporates a premium dark mode, smooth hover micro-animations, glassmorphic card layouts, custom badges, scrollbars, and responsiveness.
-* 📂 **`app.js`**: Core controller logic. Manages geolocation, Nominatim geocoding, Overpass restaurant discovery, local fallbacks, daily flash deals, offline storage caching, custom filters, and periodic crowd state simulations.
-* 📂 **`ai.js`**: AI conversation engine. Coordinates Claude and Hugging Face API payloads, implements structured markdown converters, handles voice speech recognition pipelines, and supports the local heuristic NLP simulator.
-* 📂 **`whatsapp.js`**: WhatsApp messaging orchestrator. Handles custom template generation, auto-draft previews, copying mechanisms, and URL-dispatching triggers.
-* 📂 **`supabase.js`**: Synchronizes live canteen states and menu details with a cloud-hosted relational DB using the Supabase Javascript Client SDK.
-* 📂 **`data.js`**: Holds premium baseline restaurant data, and controls local browser storage caching.
+*  **`index.html`**: Structure of the premium multi-tab dashboard. Incorporates floating offer components, modern structural sections, forms, and CDN scripts.
+*  **`style.css`**: Complete design system with customizable CSS properties (`--primary`, `--glass-bg`, etc.). Incorporates a premium dark mode, smooth hover micro-animations, glassmorphic card layouts, custom badges, scrollbars, and responsiveness.
+*  **`app.js`**: Core controller logic. Manages geolocation, Nominatim geocoding, Overpass restaurant discovery, local fallbacks, daily flash deals, offline storage caching, custom filters, and periodic crowd state simulations.
+*  **`ai.js`**: AI conversation engine. Coordinates Claude and Hugging Face API payloads, implements structured markdown converters, handles voice speech recognition pipelines, and supports the local heuristic NLP simulator.
+*  **`whatsapp.js`**: WhatsApp messaging orchestrator. Handles custom template generation, auto-draft previews, copying mechanisms, and URL-dispatching triggers.
+*  **`supabase.js`**: Synchronizes live canteen states and menu details with a cloud-hosted relational DB using the Supabase Javascript Client SDK.
+*  **`data.js`**: Holds premium baseline restaurant data, and controls local browser storage caching.
 
 ---
 
@@ -120,13 +120,13 @@ Open `ai.js` to add your intelligence keys:
 
 ---
 
-## 🌐 Live Deployment & Local Setup
+##  Live Deployment & Local Setup
 
-### ⚡ Live Demo
+###  Live Demo
 You can check out the production-grade deployed version of the app directly here:
 🔗 **[messmate-ai.vercel.app](https://messmate-ai.vercel.app)**
 
-### 💻 Running the App Locally
+###  Running the App Locally
 If you prefer to host it locally, simply run a development server:
 
 Using Python:
@@ -142,13 +142,13 @@ Navigate to `http://localhost:8000` in your web browser.
 
 ---
 
-## 🎨 Premium Theme Options
+##  Premium Theme Options
 
 MessMate AI comes equipped with a custom-engineered color design system. Users can toggle between **Premium Dark Glassmorphism** (Neon purples, transparent backdrops, glowing outlines) and **Sleek Light Mode** (Clean, soft light backdrops, elevated dark indicators) at the tap of a button. Settings are automatically remembered across sessions.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions make the open-source community amazing! 
 
@@ -161,4 +161,4 @@ Contributions make the open-source community amazing!
 ---
 
 
-*Crafted with ❤️ by the MessMate AI Dev Team.*
+*Crafted with  by the MessMate AI Dev Team.*
